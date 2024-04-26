@@ -10,12 +10,31 @@ Generally supported is:
 - Keeping state of chosen option
 - Use of system installed fonts
 
-## Screenshots
+### Jump To:
+##### [Installation](#installation)
+##### [Screenshots](#screenshots)
 
-#### Consolas Example (The display was bugged):
+### Installation
+
+Download the crx or zip from the [Releases](https://github.com/EKQRCalamity/font-changer/releases/tag/release) tab and install using the following steps:
+- Download and extract the zip file into a folder
+- Open your chromium based browser and go to chrome://extensions
+- Either open the Developer Dropdown Menu and Click 'Load Unpacked Extension' or toggle the Developer Mode/Developer Settings using the checkbox and then do the same.
+- Then select the folder where the extracted files are
+
+Or using these steps (might not work on Chrome):
+
+- Download the crx or zip file
+- Open your chromium based browser and go to chrome://extensions
+- (Skip if you have Developer Settings dropdown/options) Tick the Developer Mode/Developer Settings box
+- Drag the zip or crx file into the extensions window
+
+### Screenshots
+
+##### Consolas Example on GitHub and OpenBMC Documentation:
 ![Screenshot #1 Consolas](https://github.com/ekqrcalamity/font-changer/blob/main/assets/Screen1.png?raw=true)
 
-#### Nerd Font on YouTube Example:
+##### Nerd Font on YouTube Example:
 ![Screenshot #2 Nerd Font YouTube](https://github.com/ekqrcalamity/font-changer/blob/main/assets/Screen2.png?raw=true)
 
 #### Nerd Font on GitHub and Wikipedia:
