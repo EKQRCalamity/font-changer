@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Font Changer</title>
+  <style>
+.base {
+  background: linear-gradient(215deg, #3a86ff, #ff006e, #4cc9f0, #d62828, #ff99c8, #a9def9);
+  background-size: 400% 400%;
+  width: 300px;
+  min-height: 400px;
+  padding: 5px;
+  animation-name: bganim;
+  animation-duration: 16s;
+  animation-direction: alternate-reverse;
+  animation-iteration-count: infinite;
+}
+
+@keyframes bganim {
+  0% {
+		background-position: 0% 50%;
+	}
+	33% {
+		background-position: 50% 0%;
+	}
+  66% {
+    background-position: 200% 100%;
+  }
+	100% {
+		background-position: 150% 50%;
+	}
+}
+
+.container {
+  background-color: #050517E0;
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  padding: 10px;
+}
+
+*,
+html {
+  margin: 0;
+  padding: 0;
+  color: #E7ECEF;
+  font-family: Consolas, sans-serif;
+}
+h3 {
+  margin-bottom: 20px;
+  font-size: 1.2em;
+}
+.toggle-container {
+  display: flex;
+  align-items: center;
+  margin: 7px 0px;
+}
+.toggle-label {
+  margin-left: 5px;
+  font-size: 1em;
+}
+.toggle-switch {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 40px;
+  height: 20px;
+  background-color: #ccc;
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+}
+.toggle-switch:before {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: white;
+  top: 2px;
+  left: 2px;
+  transition: all 0.3s;
+}
+
+.toggle-switch:checked {
+  background-color: #90e0ef;
+}
+
+.toggle-switch:checked:before {
+  left: 22px;
+}
+.toggle-text {
+  position: absolute;
+  left: 200px;
+  top: 17px;
+}
+
+.input-container > select {
+  border: none;
+  outline: none;
+  background-color: #ffffff30;
+  margin: 15px 2px;
+  padding: 5px 12px;
+  font-size: 1em;
+}
+
+.input-container > select > option {
+  color: black;
+}
+
+</style>
+</head>
+<body>
+  <div class="base">
+    <div class="container">
+      <h3>Change Font</h3>
+      <div class="toggle-container">
+        <input type="checkbox" id="toggleFontSwitch" class="toggle-switch">
+        <label for="toggleSwitch" class="toggle-label">Toggle Font Changer</label>
+      </div>
+      <span id="toggleText" class="toggle-text">Not Running</span>
+      <div class="input-container">
+        <select name="font" id="font-selector">
+          
+        </select>
+      </div>
+      <div class="toggle-container">
+        <input type="checkbox" id="toggleDivSwitch" class="toggle-switch">
+        <label for="toggleDivSwitch" class="toggle-label">Change font of &#x3C;div&#x3E;</label>
+      </div>
+      <div class="toggle-container">
+        <input type="checkbox" id="toggleSpanSwitch" class="toggle-switch">
+        <label for="toggleSpanSwitch" class="toggle-label">Change font of &#x3C;span&#x3E;</label>
+      </div>
+      <div class="toggle-container">
+        <input type="checkbox" id="toggleASwitch" class="toggle-switch">
+        <label for="toggleASwitch" class="toggle-label">Change font of &#x3C;a&#x3E;</label>
+      </div>
+      <div class="toggle-container">
+        <input type="checkbox" id="togglePSwitch" class="toggle-switch">
+        <label for="togglePSwitch" class="toggle-label">Change font of &#x3C;p&#x3E;</label>
+      </div>
+      <div class="toggle-container">
+        <input type="checkbox" id="toggleHSwitch" class="toggle-switch">
+        <label for="toggleHSwitch" class="toggle-label">Change font of &#x3C;h(1-6)&#x3E;</label>
+      </div>
+      <div class="toggle-container">
+        <input type="checkbox" id="toggleQSwitch" class="toggle-switch">
+        <label for="toggleQSwitch" class="toggle-label">Change font of &#x3C;q&#x3E;</label>
+      </div>
+      <div class="toggle-container">
+        <input type="checkbox" id="togglePreSwitch" class="toggle-switch">
+            <label for="togglePreSwitch" class="toggle-label">Change font of &#x3C;pre&#x3E;</label>
+      </div>
+      <div class="toggle-container">
+        <input type="checkbox" id="toggleYTStringSwitch" class="toggle-switch">
+        <label for="toggleYTStringSwitch" class="toggle-label">Change font of YouTube Text</label>
+      </div>
+      <div class="toggle-container">
+        <input type="checkbox" id="toggleStyleSwitch" class="toggle-switch">
+        <label for="toggleStyleSwitch" class="toggle-label">Change font of common text styling tags</label>
+      </div>
+      <div class="toggle-container">
+        <input type="checkbox" id="toggleCodeSwitch" class="toggle-switch">
+        <label for="toggleCodeSwitch" class="toggle-label">Change font of &#x3C;code&#x3E;</label>
+      </div>
+      <div class="toggle-container">
+        <input type="checkbox" id="toggleQuoteSwitch" class="toggle-switch">
+        <label for="toggleQuoteSwitch" class="toggle-label">Change font of &#x3C;blockquote&#x3E; and &#x3C;cite&#x3E;</label>
+      </div>
+    </div>
+  </div>
+<script src="popup.js"></script>
+</body>
+</html>

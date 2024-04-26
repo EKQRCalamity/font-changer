@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "Font Changer",
+  "author": {
+    "email": "sodokusahoy@gmail.com"
+  },
+  "version": "0.1",
+  "description": "Change the font family of most to almost all web pages! Supports locally installed fonts.",
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "scripting",
+    "storage",
+    "fontSettings"
+  ],
+  "host_permissions": [
+    "https://*/*",
+    "http://*/*" 
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background-worker.js"
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}
