@@ -18,6 +18,6 @@ Generally supported is:
 #### Nerd Font on YouTube Example:
 ![Screenshot #2 Nerd Font YouTube](https://github.com/ekqrcalamity/font-changer/blob/main/assets/Screen2.png?raw=true)
 
-#### Nerd Font on GitHub and Wikipedia
+#### Nerd Font on GitHub and Wikipedia:
 ![Screenshot #3 Nerd Font](https://github.com/ekqrcalamity/font-changer/blob/main/assets/Screen3.png?raw=true)
 
