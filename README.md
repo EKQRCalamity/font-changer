@@ -9,6 +9,7 @@ Generally supported is:
 - Specially added YouTube Strings and regularly formated (bold, italic,...) YouTube Strings
 - Keeping state of chosen option
 - Use of system installed fonts
+- Filters so we don't change fonts where they might be used for icons
 
 ### Jump To:
 ##### [Installation](#installation)
