@@ -3,12 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
   var toggleText = document.getElementById('toggleText');
   var fontSelector = document.getElementById('font-selector'); 
 
-  chrome.fontSettings.getFontList((fonts) => {
-    fonts.forEach((font) => {
-      fontSelector.innerHTML += `<option value="${font.fontId}">${font.fontId}</option>`;
-    });
-  });
-
   var toggleDivTag = document.getElementById('toggleDivSwitch');
   var toggleSpanTag = document.getElementById('toggleSpanSwitch');
   var toggleATag = document.getElementById('toggleASwitch');
@@ -40,6 +34,18 @@ document.addEventListener('DOMContentLoaded', function () {
     const listtoggled = !!data.list ? data.list : false;
     const sliderrevolutiontoggled = !!data.sliderrevolution ? data.sliderrevolution : false;
 
+    chrome.fontSettings.getFontList((fonts) => {
+      fonts.forEach((afont) => {
+        console.log(font, afont, font == afont);
+        if (font == afont.fontId) {
+          fontSelector.innerHTML += `<option value="${afont.fontId}" selected>${afont.fontId}</option>`; 
+        } else {
+          fontSelector.innerHTML += `<option value="${afont.fontId}">${afont.fontId}</option>`;
+        }
+      });
+    });
+
+
     if (data.toggled === undefined) {
       toggleSwitch.checked = false;
       toggleText.innerText = "Not Running";
@@ -48,7 +54,6 @@ document.addEventListener('DOMContentLoaded', function () {
       toggleText.innerText = data.toggled ? "Running" : "Not Running";
     }
 
-    fontSelector.value = font;
     toggleDivTag.checked = divtoggled;
     toggleSpanTag.checked = spantoggled;
     toggleATag.checked = atoggled;
