@@ -5,7 +5,7 @@ Most websites should work out of the box. There are some checks that should catc
 
 Generally supported is:
 - Most common websites and web tags
-  - &#x3C;div&#x3E;, &#x3C;span&#x3E;, &#x3C;a&#x3E;, &#x3C;p&#x3E;, all &#x3C;h&#x3E; tags, &#x3C;q&#x3E;, &#x3C;pre>&#x3E;, &#x3C;code&#x3E;, &#x3C;blockquote&#x3E;, &#x3C;cite&#x3E;, common stylings for italic, bold, subscript...
+  - &#x3C;div&#x3E;, &#x3C;span&#x3E;, &#x3C;a&#x3E;, &#x3C;p&#x3E;, all &#x3C;h&#x3E; tags, &#x3C;q&#x3E;, &#x3C;pre&#x3E;, &#x3C;code&#x3E;, &#x3C;blockquote&#x3E;, &#x3C;cite&#x3E;, common tags for lists, italic, bold, subscript...
 - Specially added YouTube Strings and regularly formated (bold, italic,...) YouTube Strings
 - Keeping state of chosen option
 - Use of system installed fonts
