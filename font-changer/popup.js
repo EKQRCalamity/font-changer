@@ -20,8 +20,9 @@ document.addEventListener('DOMContentLoaded', function () {
   var toggleStyleTag = document.getElementById('toggleStyleSwitch');
   var toggleCodeTag = document.getElementById('toggleCodeSwitch');
   var toggleQuoteTag = document.getElementById('toggleQuoteSwitch');
+  var toggleListTag = document.getElementById('toggleListSwitch');
 
-  chrome.storage.local.get(['toggled', 'font', 'div', 'span', 'a', 'p', 'q', 'h', 'yt', 'pre', 'style', 'code', 'quote'], (data) => {
+  chrome.storage.local.get(['toggled', 'font', 'div', 'span', 'a', 'p', 'q', 'h', 'yt', 'pre', 'style', 'code', 'quote', 'list'], (data) => {
     const toggled = !!data.toggled ? data.toggled : false;
     const font = !!data.font ? data.font : "Consolas";
     const divtoggled = !!data.div ? data.div : false;
@@ -35,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const styletoggled = !!data.style ? data.style : false;
     const codetoggled = !!data.code ? data.code : false;
     const quotetoggled = !!data.quote ? data.quote : false;
+    const listtoggled = !!data.list ? data.list : false;
 
     if (data.toggled === undefined) {
       toggleSwitch.checked = false;
@@ -56,9 +58,8 @@ document.addEventListener('DOMContentLoaded', function () {
     toggleStyleTag.checked = styletoggled;
     toggleCodeTag.checked = codetoggled;
     toggleQuoteTag.checked = quotetoggled;
+    toggleListTag.checked = listtoggled;
   });
-  
-  
 
   toggleSwitch.addEventListener('change', function () {
     chrome.storage.local.set({toggled: toggleSwitch.checked}, () => {});
@@ -113,5 +114,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   toggleQuoteTag.addEventListener('change', function () {
     chrome.storage.local.set({quote: toggleQuoteTag.checked});
+  })
+
+  toggleListTag.addEventListener('change', function () {
+    chrome.storage.local.set({list: toggleListTag.checked});
   })
 });

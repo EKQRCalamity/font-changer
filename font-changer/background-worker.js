@@ -1,5 +1,5 @@
 function updateText(wait_time) {
-  chrome.storage.local.get(['toggled', 'font', 'div', 'span', 'a', 'p', 'q', 'h', 'yt', 'pre', 'style', 'code', 'quote'], (data) => {
+  chrome.storage.local.get(['toggled', 'font', 'div', 'span', 'a', 'p', 'q', 'h', 'yt', 'pre', 'style', 'code', 'quote', 'list'], (data) => {
     const toggled = data.toggled || false;
     const font = data.font || 'Consolas';
     const divtoggled = data.div || false;
@@ -13,6 +13,7 @@ function updateText(wait_time) {
     const styletoggled = data.style || false;
     const codetoggled = data.code || false;
     const quotetoggled = data.quote || false;
+    const listtoggled = data.list || false;
 
     if (toggled) {
       const elements = [
@@ -26,7 +27,8 @@ function updateText(wait_time) {
         ...(yttoggled ? [...document.querySelectorAll('yt-formatted-string, yt-attributed-string, yt-touch-feedback-shape')] : []),
         ...(styletoggled ? [...document.querySelectorAll('strong, b, i, em, mark, small, del, s, ins, u, sup, dfn')] : []),
         ...(codetoggled ? [...document.querySelectorAll('code, samp, kbd, var')] : []),
-        ...(quotetoggled ? [...document.querySelectorAll('blockquote, cite')] : [])
+        ...(quotetoggled ? [...document.querySelectorAll('blockquote, cite')] : []),
+        ...(listtoggled ? [...document.querySelectorAll('li, ul, dd, dl, ol, dt')] : []),
       ];
     
       
@@ -57,7 +59,7 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendr) {
 });
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) { 
-  if (changeInfo.status == 'complete' && !(tab.url?.startsWith('chrome://') || tab.url?.startsWith('https://chromewebstore'))) {
+  if (changeInfo.status == 'complete' && !(tab.url?.startsWith('chrome'))) {
     chrome.scripting.executeScript({
       target: { tabId: tabId },
       func: updateText,
