@@ -21,8 +21,9 @@ document.addEventListener('DOMContentLoaded', function () {
   var toggleCodeTag = document.getElementById('toggleCodeSwitch');
   var toggleQuoteTag = document.getElementById('toggleQuoteSwitch');
   var toggleListTag = document.getElementById('toggleListSwitch');
+  let toggleSR_RSTag = document.getElementById('toggleSliderRevolutionSwitch');
 
-  chrome.storage.local.get(['toggled', 'font', 'div', 'span', 'a', 'p', 'q', 'h', 'yt', 'pre', 'style', 'code', 'quote', 'list'], (data) => {
+  chrome.storage.local.get(['toggled', 'font', 'div', 'span', 'a', 'p', 'q', 'h', 'yt', 'pre', 'style', 'code', 'quote', 'list', 'sliderrevolution'], (data) => {
     const toggled = !!data.toggled ? data.toggled : false;
     const font = !!data.font ? data.font : "Consolas";
     const divtoggled = !!data.div ? data.div : false;
@@ -37,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const codetoggled = !!data.code ? data.code : false;
     const quotetoggled = !!data.quote ? data.quote : false;
     const listtoggled = !!data.list ? data.list : false;
+    const sliderrevolutiontoggled = !!data.sliderrevolution ? data.sliderrevolution : false;
 
     if (data.toggled === undefined) {
       toggleSwitch.checked = false;
@@ -59,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
     toggleCodeTag.checked = codetoggled;
     toggleQuoteTag.checked = quotetoggled;
     toggleListTag.checked = listtoggled;
+    toggleSR_RSTag.checked = sliderrevolutiontoggled;
   });
 
   toggleSwitch.addEventListener('change', function () {
@@ -118,5 +121,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   toggleListTag.addEventListener('change', function () {
     chrome.storage.local.set({list: toggleListTag.checked});
+  })
+
+  toggleSR_RSTag.addEventListener('change', function () {
+    chrome.storage.local.set({sliderrevolution: toggleSR_RSTag.checked});
   })
 });

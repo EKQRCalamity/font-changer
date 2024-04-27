@@ -1,5 +1,5 @@
 function updateText(wait_time) {
-  chrome.storage.local.get(['toggled', 'font', 'div', 'span', 'a', 'p', 'q', 'h', 'yt', 'pre', 'style', 'code', 'quote', 'list'], (data) => {
+  chrome.storage.local.get(['toggled', 'font', 'div', 'span', 'a', 'p', 'q', 'h', 'yt', 'pre', 'style', 'code', 'quote', 'list', 'sliderrevolution'], (data) => {
     const toggled = data.toggled || false;
     const font = data.font || 'Consolas';
     const divtoggled = data.div || false;
@@ -14,21 +14,23 @@ function updateText(wait_time) {
     const codetoggled = data.code || false;
     const quotetoggled = data.quote || false;
     const listtoggled = data.list || false;
+    const sliderrevolutiontoggled = data.sliderrevolution || false;
 
     if (toggled) {
       const elements = [
-        ...(ptoggled ? [...document.getElementsByTagName('p')] : []),
-        ...(htoggled ? [...document.querySelectorAll('h1, h2, h3, h4, h5, h6')] : [] ),
-        ...(atoggled ? [...document.getElementsByTagName('a')].filter((x) => !(x.innerText == x.innerText.toLowerCase()) || x.innerText.split(' ').length > 1) : [] ),
-        ...(qtoggled ? [...document.getElementsByTagName('q')].filter((x) => !(x.innerText == x.innerText.toLowerCase()) || x.innerText.split(' ').length > 1) : [] ),
-        ...(spantoggled ? [...document.getElementsByTagName('span')].filter((x) => !(x.innerText == x.innerText.toLowerCase()) || x.innerText.split(' ').length > 1) : [] ),
-        ...(divtoggled ? [...document.getElementsByTagName('div')].filter((x) => !(x.innerText == x.innerText.toLowerCase()) || x.innerText.split(' ').length >1) : [] ),
-        ...(pretoggled ? [...document.getElementsByTagName('pre')].filter((x) => !(x.innerText == x.innerText.toLowerCase()) || x.innerText.split(' ').length > 1) : [] ),
+        ...(ptoggled ? [...document.getElementsByTagName('p')].filter((x) => !!x.innerText) : []),
+        ...(htoggled ? [...document.querySelectorAll('h1, h2, h3, h4, h5, h6')].filter((x) => !!x.innerText) : [] ),
+        ...(atoggled ? [...document.getElementsByTagName('a')].filter((x) => !!x.innerText && !(x.innerText == x.innerText.toLowerCase()) || x.innerText.split(' ').length > 1) : [] ),
+        ...(qtoggled ? [...document.getElementsByTagName('q')].filter((x) => !!x.innerText && !(x.innerText == x.innerText.toLowerCase()) || x.innerText.split(' ').length > 1) : [] ),
+        ...(spantoggled ? [...document.getElementsByTagName('span')].filter((x) => !!x.innerText && !(x.innerText == x.innerText.toLowerCase()) || x.innerText.split(' ').length > 1) : [] ),
+        ...(divtoggled ? [...document.getElementsByTagName('div')].filter((x) => !!x.innerText && !(x.innerText == x.innerText.toLowerCase()) || x.innerText.split(' ').length >1) : [] ),
+        ...(pretoggled ? [...document.getElementsByTagName('pre')].filter((x) => !!x.innerText && !(x.innerText == x.innerText.toLowerCase()) || x.innerText.split(' ').length > 1) : [] ),
         ...(yttoggled ? [...document.querySelectorAll('yt-formatted-string, yt-attributed-string, yt-touch-feedback-shape')] : []),
-        ...(styletoggled ? [...document.querySelectorAll('strong, b, i, em, mark, small, del, s, ins, u, sup, dfn')] : []),
-        ...(codetoggled ? [...document.querySelectorAll('code, samp, kbd, var')] : []),
-        ...(quotetoggled ? [...document.querySelectorAll('blockquote, cite')] : []),
-        ...(listtoggled ? [...document.querySelectorAll('li, ul, dd, dl, ol, dt')] : []),
+        ...(styletoggled ? [...document.querySelectorAll('strong, b, i, em, mark, small, del, s, ins, u, sup, dfn')].filter((x) => !!x.innerText) : []),
+        ...(codetoggled ? [...document.querySelectorAll('code, samp, kbd, var')].filter((x) => !!x.innerText) : []),
+        ...(quotetoggled ? [...document.querySelectorAll('blockquote, cite')].filter((x) => !!x.innerText) : []),
+        ...(listtoggled ? [...document.querySelectorAll('li, ul, dd, dl, ol, dt')].filter((x) => !!x.innerText) : []),
+        ...(sliderrevolutiontoggled ? [...document.querySelectorAll('rs-loader, rs-loop-wrap, rs-layer-wrap, rs-static-layers, rs-slides, rs-slides, rs-mask-wrap, rs-layer')].filter((x) => !!x.innerText) : [])
       ];
     
       
