@@ -1,3 +1,5 @@
+
+
 function updateText(wait_time) {
   chrome.storage.local.get(['toggled', 'font', 'div', 'span', 'a', 'p', 'q', 'h', 'yt', 'pre', 'style', 'code', 'quote', 'list', 'sliderrevolution'], (data) => {
     const toggled = data.toggled || false;
@@ -17,26 +19,44 @@ function updateText(wait_time) {
     const sliderrevolutiontoggled = data.sliderrevolution || false;
 
     if (toggled) {
+      function innerCheck(x) {
+        return !!x && !!x.innerText;
+      }
+
+      function deepCheck(x) {
+        if (!x || !x.innerText) return false;
+        const lowerUpperCheck = (x.innerText == x.innerText.toLowerCase() || x.innerText == x.innerText.toUpperCase());
+        if (lowerUpperCheck && x.innerText.split(" ").length == 1) return false;
+        return true;
+      }
+
+      const innerCheckTags = [
+        ...(ptoggled ? ["p"] : []),
+        ...(htoggled ? ["h1", "h2", "h3", "h4", "h5", "h6"] : []),
+        ...(yttoggled ? ["yt-formatted-string", "yt-attributed-string", "yt-touch-feedback-shape"] : []),
+        ...(styletoggled ? ["strong", "b", "i", "em", "mark", "small", "del", "s", "ins", "u", "sup", "dfn"] : []),
+        ...(codetoggled ? ["code", "samp", "kbd", "var"] : []),
+        ...(quotetoggled ? ["blockquote", "cite"] : []),
+        ...(listtoggled ? ["li", "ul", "dd", "dl", "ol", "dt"] : []),
+        ...(sliderrevolutiontoggled ? ["rs-loader", "rs-loop-wrap", "rs-layer-wrap", "rs-static-layers", "rs-slides", "rs-mask-wrap", "rs-layer"] : []),
+      ].join(", ");
+
+      const deepCheckTags = [
+        ...(atoggled ? ["a"] : []),
+        ...(qtoggled ? ["q"] : []),
+        ...(spantoggled ? ["span"] : []),
+        ...(divtoggled ? ["div"] : []),
+        ...(pretoggled ? ["pre"] : []),
+      ].join(", ");
+
       const elements = [
-        ...(ptoggled ? [...document.getElementsByTagName('p')].filter((x) => !!x.innerText) : []),
-        ...(htoggled ? [...document.querySelectorAll('h1, h2, h3, h4, h5, h6')].filter((x) => !!x.innerText) : [] ),
-        ...(atoggled ? [...document.getElementsByTagName('a')].filter((x) => !!x.innerText && (!(x.innerText == x.innerText.toLowerCase() || (x.innerText.split(' ').length == 1 && x.innerText.includes("_"))) || x.innerText.split(' ').length > 1)) : [] ),
-        ...(qtoggled ? [...document.getElementsByTagName('q')].filter((x) => !!x.innerText && (!(x.innerText == x.innerText.toLowerCase() || (x.innerText.split(' ').length == 1 && x.innerText.includes("_"))) || x.innerText.split(' ').length > 1)) : [] ),
-        ...(spantoggled ? [...document.getElementsByTagName('span')].filter((x) => !!x.innerText && (!(x.innerText == x.innerText.toLowerCase() || (x.innerText.split(' ').length == 1 && x.innerText.includes("_"))) || x.innerText.split(' ').length > 1)) : [] ),
-        ...(divtoggled ? [...document.getElementsByTagName('div')].filter((x) => !!x.innerText && (!(x.innerText == x.innerText.toLowerCase() || (x.innerText.split(' ').length == 1 && x.innerText.includes("_"))) || x.innerText.split(' ').length > 1)) : [] ),
-        ...(pretoggled ? [...document.getElementsByTagName('pre')].filter((x) => !!x.innerText && (!(x.innerText == x.innerText.toLowerCase() || (x.innerText.split(' ').length == 1 && x.innerText.includes("_"))) || x.innerText.split(' ').length > 1)) : [] ),
-        ...(yttoggled ? [...document.querySelectorAll('yt-formatted-string, yt-attributed-string, yt-touch-feedback-shape')] : []),
-        ...(styletoggled ? [...document.querySelectorAll('strong, b, i, em, mark, small, del, s, ins, u, sup, dfn')].filter((x) => !!x.innerText) : []),
-        ...(codetoggled ? [...document.querySelectorAll('code, samp, kbd, var')].filter((x) => !!x.innerText) : []),
-        ...(quotetoggled ? [...document.querySelectorAll('blockquote, cite')].filter((x) => !!x.innerText) : []),
-        ...(listtoggled ? [...document.querySelectorAll('li, ul, dd, dl, ol, dt')].filter((x) => !!x.innerText) : []),
-        ...(sliderrevolutiontoggled ? [...document.querySelectorAll('rs-loader, rs-loop-wrap, rs-layer-wrap, rs-static-layers, rs-slides, rs-slides, rs-mask-wrap, rs-layer')].filter((x) => !!x.innerText) : [])
+        ...(!!innerCheckTags ? [...document.querySelectorAll(innerCheckTags)].filter((x) => innerCheck(x)) : []),
+        ...(!!deepCheckTags ? [...document.querySelectorAll(deepCheckTags)].filter((x) => deepCheck(x)) : [])
       ];
-    
-      
+
       elements.forEach(element => {
         const computedStyle = window.getComputedStyle(element);
-        if (computedStyle.getPropertyPriority('font-family') !== 'important') {
+        if (computedStyle.getPropertyPriority('font-family') !== 'important' && element.style.fontFamily != `${font}, sans-serif`) {
           element.style.fontFamily = `${font}, sans-serif`;
         }
       });

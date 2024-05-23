@@ -4,7 +4,7 @@
   "author": {
     "email": "sodokusahoy@gmail.com"
   },
-  "version": "0.1",
+  "version": "0.2",
   "description": "Change the font family of most to almost all web pages! Supports locally installed fonts.",
   "permissions": [
     "activeTab",
@@ -15,7 +15,7 @@
   ],
   "host_permissions": [
     "https://*/*",
-    "http://*/*" 
+    "http://*/*"
   ],
   "action": {
     "default_popup": "popup.html",

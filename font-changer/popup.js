@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   var toggleSwitch = document.getElementById('toggleFontSwitch');
   var toggleText = document.getElementById('toggleText');
-  var fontSelector = document.getElementById('font-selector'); 
+  var fontSelector = document.getElementById('font-selector');
 
   var toggleDivTag = document.getElementById('toggleDivSwitch');
   var toggleSpanTag = document.getElementById('toggleSpanSwitch');
@@ -36,7 +36,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     chrome.fontSettings.getFontList((fonts) => {
       fonts.forEach((afont) => {
-        console.log(font, afont, font == afont);
         if (font == afont.fontId) {
           fontSelector.innerHTML += `<option value="${afont.fontId}" selected>${afont.fontId}</option>`; 
         } else {
